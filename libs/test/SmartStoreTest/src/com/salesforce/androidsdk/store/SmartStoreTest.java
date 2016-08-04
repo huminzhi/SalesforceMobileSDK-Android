@@ -36,7 +36,6 @@ import com.salesforce.androidsdk.smartstore.store.QuerySpec.Order;
 import com.salesforce.androidsdk.smartstore.store.SmartStore;
 import com.salesforce.androidsdk.smartstore.store.SmartStore.Type;
 import com.salesforce.androidsdk.smartstore.store.SoupSpec;
-import com.salesforce.androidsdk.ui.PasscodeActivity;
 import com.salesforce.androidsdk.util.test.JSONTestHelper;
 
 import net.sqlcipher.database.SQLiteDatabase;
