@@ -56,13 +56,15 @@ public abstract class SmartStoreTestCase extends InstrumentationTestCase {
 	protected Context targetContext;
 	protected SQLiteOpenHelper dbOpenHelper;
 	protected SmartStore store;
+	protected DBHelper dbHelper;
 
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 		targetContext = getInstrumentation().getTargetContext();
 		dbOpenHelper = DBOpenHelper.getOpenHelper(targetContext, null);
-		DBHelper.getInstance(dbOpenHelper.getWritableDatabase(getPasscode())).reset(targetContext, null);
+		dbHelper = DBHelper.getInstance(dbOpenHelper.getWritableDatabase(getPasscode()));
+		dbHelper.reset(targetContext, null);
 		store = new SmartStore(dbOpenHelper, getPasscode());
 		store.dropAllSoups();
 	}

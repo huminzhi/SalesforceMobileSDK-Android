@@ -36,6 +36,7 @@ import com.salesforce.androidsdk.smartstore.store.QuerySpec.Order;
 import com.salesforce.androidsdk.smartstore.store.SmartStore;
 import com.salesforce.androidsdk.smartstore.store.SmartStore.Type;
 import com.salesforce.androidsdk.smartstore.store.SoupSpec;
+import com.salesforce.androidsdk.ui.PasscodeActivity;
 import com.salesforce.androidsdk.util.test.JSONTestHelper;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -1388,5 +1389,12 @@ public class SmartStoreTest extends SmartStoreTestCase {
 		// Verify JSON form
 		assertEquals("Soup name in json of soup spec is incorrect", SOUP_SPEC_TEST, result.toJSON().getString("name"));
 		assertEquals("Feature set in json of soup spec is incorrect", SoupSpec.FEATURE_EXTERNAL_STORAGE, result.toJSON().getJSONArray("features").get(0));
+	}
+
+	public void testDbHelperGetCachedTableName() {
+		registerSoup(store, TEST_SOUP, new IndexSpec[] { new IndexSpec("key", Type.string) });
+		assertEquals(this.getSoupTableName(TEST_SOUP), dbHelper.getCachedTableName(TEST_SOUP));
+		store.dropSoup(TEST_SOUP);
+		assertNull(dbHelper.getCachedTableName(TEST_SOUP));
 	}
 }
