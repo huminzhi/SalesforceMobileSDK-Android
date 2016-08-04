@@ -1392,6 +1392,8 @@ public class SmartStoreTest extends SmartStoreTestCase {
 
 	public void testDbHelperGetCachedTableName() {
 		registerSoup(store, TEST_SOUP, new IndexSpec[] { new IndexSpec("key", Type.string) });
+		assertNull(dbHelper.getCachedTableName(TEST_SOUP));
+		assertTrue(store.hasSoup(TEST_SOUP));
 		assertEquals(this.getSoupTableName(TEST_SOUP), dbHelper.getCachedTableName(TEST_SOUP));
 		store.dropSoup(TEST_SOUP);
 		assertNull(dbHelper.getCachedTableName(TEST_SOUP));
